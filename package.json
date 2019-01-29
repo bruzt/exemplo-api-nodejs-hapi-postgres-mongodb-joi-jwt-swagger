@@ -1,0 +1,37 @@
+{
+  "name": "api",
+  "version": "1.0.2",
+  "description": "Web API with hapiJS+Joi, Sequelize+Postgres, Mongoose+MongoDB, JWT, Swagger, pm2 and mocha+istanbul",
+  "main": "api.js",
+  "scripts": {
+    "postinstall": "cross-env NODE_ENV=prod npm test",
+    "test": "nyc --reporter=html mocha --timeout 10000 --exit src/tests/*.js",
+    "test:prod": "cross-env NODE_ENV=prod npm test",
+    "prod": "cross-env NODE_ENV=prod pm2-runtime src/api.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "boom": "^7.3.0",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
+    "hapi": "^17.8.1",
+    "hapi-auth-jwt2": "^8.2.0",
+    "hapi-swagger": "^9.3.0",
+    "inert": "^5.1.2",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.2",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "pm2": "^3.2.9",
+    "sequelize": "^4.42.0",
+    "vision": "^5.4.4"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  }
+}
