@@ -31,7 +31,7 @@ const AuthRoutes = require('./controllers/AuthRoutes');
 const PasswordHelper = require('./controllers/helpers/PasswordHelper');
 
 
-const app = new Hapi.Server({ port: process.env.API_PORT });
+const app = new Hapi.Server({ port: process.env.PORT });
 
 function mapRoutes(instance, methods){  
     return methods.map((method) => instance[method]());
