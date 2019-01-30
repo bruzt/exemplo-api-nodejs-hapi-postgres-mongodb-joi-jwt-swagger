@@ -28,8 +28,6 @@ const DefaultRoute = require('./controllers/DefaultRoute');
 const PeopleRoutes = require('./controllers/PeopleRoutes');
 const AuthRoutes = require('./controllers/AuthRoutes');
 
-const PasswordHelper = require('./controllers/helpers/PasswordHelper');
-
 
 const app = new Hapi.Server({ port: process.env.PORT });
 
@@ -93,15 +91,6 @@ async function main() {
             ...mapRoutes(new AuthRoutes(postgres, secret), AuthRoutes.methods())
         ]);
 
-        //#################################################
-        const CREATE_USER_DB = {
-            username: 'admin',
-            password: await PasswordHelper.hashPassword('admin')
-        }
-        //await new Promise((resolve) => setTimeout(resolve, 5000));        
-        await postgres.update(null, CREATE_USER_DB, upsert=true);
-        //#################################################
-  
         await app.start();
         //console.log('app rodando na porta', app.info.port);
     

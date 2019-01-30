@@ -53,6 +53,15 @@ describe ("API Test Suite", () => {
         }
     });
 
+    it('Deve acessar raiz "/" e retornar mensagem', async () => {
+        const response = await app.inject({
+            method: 'GET',
+            url: '/',
+        });
+        //console.log(response)
+        assert.deepStrictEqual(response.payload, '<h1>Acesse /documentation</h1>')
+    })
+
     it ('Listar /people', async () => {
         const result = await app.inject({
             method: 'GET',
@@ -125,6 +134,20 @@ describe ("API Test Suite", () => {
         const result = await app.inject({
             method: 'GET',
             url: '/people/read?name=Luke',
+            headers
+        });
+
+        const data = JSON.parse(result.payload);
+        const statusCode = result.statusCode;
+        
+        assert.deepStrictEqual(statusCode, 200);
+        assert.ok(data[0].name  === 'Luke Skywalker');
+    });
+
+    it('Listar /people pelo ID', async () => {
+        const result = await app.inject({
+            method: 'GET',
+            url: `/people/read/${ID}`,
             headers
         });
 

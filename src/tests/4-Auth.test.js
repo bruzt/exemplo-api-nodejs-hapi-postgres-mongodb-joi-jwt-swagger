@@ -8,7 +8,7 @@ const PasswordHelper = require('../controllers/helpers/PasswordHelper');
 
 const CREATE_ADMIN_USER = {
     username: "admin",
-    password: "admin"
+    password: "2077"
 };
 
 let app = {};
@@ -51,5 +51,33 @@ describe ("Authentication Test Suite", () => {
         assert.ok(response.statusCode === 401);
         assert.ok(JSON.parse(response.payload).error === "Unauthorized");
     });
+
+    it('Deve trocar a senha', async () => {
+        const response = await app.inject({
+            method: 'PATCH',
+            url: '/login/change',
+            payload: {
+                "username": "admin",
+                "password": "2077",
+                "newPassword": "admin"
+            }
+        });
+        //console.log(response)
+        assert.deepStrictEqual(response.result.message, "Senha trocada com sucesso!");
+    })
+
+    it('Deve negar a trocar por senha incorreta', async () => {
+        const response = await app.inject({
+            method: 'PATCH',
+            url: '/login/change',
+            payload: {
+                "username": "admin",
+                "password": "d5h19d",
+                "newPassword": "admin"
+            }
+        });
+        //console.log(response)
+        assert.deepStrictEqual(response.result.message, "Usuario ou senha inválidos");
+    })
 
 });

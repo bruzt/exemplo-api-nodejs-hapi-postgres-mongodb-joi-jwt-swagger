@@ -41,13 +41,30 @@ sudo docker exec -ti mongodb-test \
     --eval "db.getSiblingDB('peoples').createUser({user: 'cliente1', pwd: '123', roles: [{role: 'readWrite', db: 'peoples'}]})"
 ```
 
+# Testa a API em dev mode
+```
+npm run test
+```
+
+# Testa a API em prod mode
+```
+npm run test:prod
+```
+
+# Executa a API em prod mode
+```
+npm run prod
+```
+
+################################
+
 # Container API-test
 ```
 sudo docker run -d \
 	--name api-test \
 	-p 5000:5000 \
 	--network=api-bridge \
-    bruzt/api-rest-hapi:1.0.1
+    bruzt/api-rest-hapi:1.0.2
 ```
 
 

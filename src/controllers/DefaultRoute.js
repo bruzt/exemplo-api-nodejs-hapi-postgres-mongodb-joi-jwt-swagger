@@ -16,7 +16,7 @@ class DefaultRoute extends BaseRoute {
             handler: (request, reply) => {
                 try {
                     
-                return 'Acesse /documentation';
+                return '<h1>Acesse /documentation</h1>';
 
                 } catch (error) {
                     console.error("Erro no DefaultRoute", error);
