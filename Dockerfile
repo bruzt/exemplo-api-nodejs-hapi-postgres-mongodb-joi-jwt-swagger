@@ -8,4 +8,4 @@ ENV PM2_SECRET_KEY 6r0dugkg9b6wlbf
 
 EXPOSE 5000
 
-CMD ["bash", "init.sh"]
+CMD ["bash", "/home/node/init.sh"]
