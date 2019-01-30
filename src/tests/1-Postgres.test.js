@@ -24,7 +24,7 @@ describe ('Postgres Test Suite', () => {
     });
 
     after(async () => {
-        await postgres.delete(); // limpa a base de dados
+        await postgres.delete(null, all=true); // limpa a base de dados
     });
 
     it('Verificar conexão com Postgres', async () => {

@@ -66,8 +66,8 @@ class Postgres extends CrudInterface {
 
     }
 
-    delete(id){
-        const query = (id) ? { id } : {} // se (id) foi passado, retorna um objeto contendo {id}, se não retorna objeto vazio {}
+    delete(id, all=false){
+        const query = (!all) ? { id } : {} // se (id) foi passado, retorna um objeto contendo {id}, se não retorna objeto vazio {}
         return this._model.destroy({where: query});
     }
 }

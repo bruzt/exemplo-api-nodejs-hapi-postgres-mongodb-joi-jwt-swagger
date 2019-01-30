@@ -46,10 +46,11 @@ describe ("API Test Suite", () => {
         
     });
 
-    after(() => {
-        ids.map(async (id) => {
-            await mongodb.delete(id);
-        });
+    after(async () => {
+        for(let i=0; i<=ids.length-1; i++){
+            //console.log(ids[i])
+            await mongodb.delete(ids[i]);
+        }
     });
 
     it ('Listar /people', async () => {
@@ -143,12 +144,13 @@ describe ("API Test Suite", () => {
         });
         
         const statusCode = result.statusCode;
-        assert.ok(statusCode === 200);
+        
 
         const { message, _id: id } = JSON.parse(result.payload);
 
         ids.push(id);
 
+        assert.ok(statusCode === 200);
         assert.notDeepStrictEqual(id, undefined);
         assert.deepEqual(message, "Pessoa cadastrada com sucesso");
     });
